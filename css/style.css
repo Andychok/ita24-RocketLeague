@@ -1,0 +1,107 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black;
+}
+.carousel-control-prev {
+  bottom: -10px;
+  top: auto;
+  left: 25%;
+  transform: translateX(-50%);
+}
+.carousel-control-next {
+  bottom: -10px;
+  top: auto;
+  right: 25%;
+  transform: translateX(50%);
+}
+#teilnehmer h2 {
+  text-align: center;
+}
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stärkerer Schatten */
+  border-radius: 15px; /* Stärkere Abrundung */
+  margin: 10px; /* Füge etwas Abstand zwischen den Karten hinzu */
+}
+.card-body {
+  padding: 1.5rem;
+}
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+#teamCarousel {
+  padding-bottom: 50px; /* Füge Padding hinzu, um Platz für die Pfeile zu schaffen */
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Turnierbaum Styles */
+.tournament-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.round {
+  text-align: center;
+  margin: 0 20px;
+}
+
+.round h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.match {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.team {
+  font-weight: bold;
+}
+
+.score {
+  margin: 0 10px;
+}
+
+.winner {
+  color: green;
+}
+
+.finale {
+  margin-top: 20px;
+}
+
+.orange-team {
+  color: orange;
+  font-weight: bold;
+}
+
+.blue-team {
+  color: blue;
+  font-weight: bold;
+}

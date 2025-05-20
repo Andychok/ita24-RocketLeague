@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Einstellungen</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #343a40; /* Dunkelgrauer Hintergrund */
+      color: white; /* Weiße Schriftfarbe */
+    }
+
+    .card {
+      background-color: #444; /* Dunklere Karten */
+      border-color: #666; /* Dunklere Rahmenfarbe */
+      color: white;
+      margin: 15px; /* Füge etwas Abstand zwischen den Karten hinzu */
+    }
+
+    .form-control,
+    .form-select {
+      background-color: #555; /* Dunklere Eingabefelder */
+      border-color: #777;
+      color: white;
+      margin-bottom: 10px; /* Fügt 10px Abstand nach jedem Input-Feld hinzu */
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      background-color: #666; /* Noch dunklere Eingabefelder im Fokus */
+      border-color: #888;
+      color: white;
+    }
+
+    .btn-primary {
+      background-color: #007bff; /* Blaue Farbe beibehalten oder anpassen */
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d; /* Graue Farbe beibehalten oder anpassen */
+      border-color: #6c757d;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #545b62;
+      border-color: #545b62;
+      color: white;
+    }
+
+    .team-card {
+      display: none;
+    }
+    .team-card.active {
+      display: block;
+    }
+
+    /* Pfeile mittig positionieren */
+    .d-flex.justify-content-between.mb-3 {
+      align-items: center; /* Vertikal zentrieren */
+    }
+
+    /* Buttons unterhalb der Teamkarten */
+    .button-container {
+      display: flex;
+      flex-direction: column; /* Buttons untereinander anordnen */
+      align-items: flex-start; /* Linksbündig ausrichten */
+      margin-top: 10px; /* Verringerter Abstand zum oberen Rand */
+      margin-bottom: 20px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .button-container .top-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .save-back-container {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Abstand zwischen den Mitglieder-Feldern */
+    .form-control {
+      margin-bottom: 5px; /* Fügt 5px Abstand nach jedem Input-Feld hinzu */
+      color: white; /* Schriftfarbe auf Weiß setzen */
+    }
+
+    /* Farbe der Platzhaltertexte */
+    .form-control::placeholder {
+      color: #ddd; /* Hellere Farbe für Platzhaltertexte */
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h1 class="mb-5">Admin Einstellungen</h1>
+    <form id="teamForm">
+      <!-- Team 1 -->
+      <div class="card mb-4 team-card active" id="team1Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 1</h5>
+          <div class="mb-3">
+            <label for="team1Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team1Name" value="Team 1">
+          </div>
+          <div class="mb-3">
+            <label for="team1Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team1Color" value="#FFA500">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 2 -->
+      <div class="card mb-4 team-card" id="team2Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 2</h5>
+          <div class="mb-3">
+            <label for="team2Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team2Name" value="Team 2">
+          </div>
+          <div class="mb-3">
+            <label for="team2Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team2Color" value="#0000FF">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 3 -->
+      <div class="card mb-4 team-card" id="team3Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 3</h5>
+          <div class="mb-3">
+            <label for="team3Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team3Name" value="Team 3">
+          </div>
+          <div class="mb-3">
+            <label for="team3Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team3Color" value="#800080">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 4 -->
+      <div class="card mb-4 team-card" id="team4Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 4</h5>
+          <div class="mb-3">
+            <label for="team4Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team4Name" value="Team 4">
+          </div>
+          <div class="mb-3">
+            <label for="team4Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team4Color" value="#008000">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 5 -->
+      <div class="card mb-4 team-card" id="team5Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 5</h5>
+          <div class="mb-3">
+            <label for="team5Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team5Name" value="Team 5">
+          </div>
+          <div class="mb-3">
+            <label for="team5Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team5Color" value="#FFFF00">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 6 -->
+      <div class="card mb-4 team-card" id="team6Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 6</h5>
+          <div class="mb-3">
+            <label for="team6Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team6Name" value="Team 6">
+          </div>
+          <div class="mb-3">
+            <label for="team6Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team6Color" value="#A52A2A">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 7 -->
+      <div class="card mb-4 team-card" id="team7Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 7</h5>
+          <div class="mb-3">
+            <label for="team7Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team7Name" value="Team 7">
+          </div>
+          <div class="mb-3">
+            <label for="team7Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team7Color" value="#00FFFF">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 8 -->
+      <div class="card mb-4 team-card" id="team8Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 8</h5>
+          <div class="mb-3">
+            <label for="team8Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team8Name" value="Team 8">
+          </div>
+          <div class="mb-3">
+            <label for="team8Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team8Color" value="#FF00FF">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 9 -->
+      <div class="card mb-4 team-card" id="team9Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 9</h5>
+          <div class="mb-3">
+            <label for="team9Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team9Name" value="Team 9">
+          </div>
+          <div class="mb-3">
+            <label for="team9Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team9Color" value="#C0C0C0">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 10 -->
+      <div class="card mb-4 team-card" id="team10Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 10</h5>
+          <div class="mb-3">
+            <label for="team10Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team10Name" value="Team 10">
+          </div>
+          <div class="mb-3">
+            <label for="team10Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team10Color" value="#808080">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 11 -->
+      <div class="card mb-4 team-card" id="team11Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 11</h5>
+          <div class="mb-3">
+            <label for="team11Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team11Name" value="Team 11">
+          </div>
+          <div class="mb-3">
+            <label for="team11Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team11Color" value="#000080">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 12 -->
+      <div class="card mb-4 team-card" id="team12Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 12</h5>
+          <div class="mb-3">
+            <label for="team12Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team12Name" value="Team 12">
+          </div>
+          <div class="mb-3">
+            <label for="team12Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team12Color" value="#800000">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 13 -->
+      <div class="card mb-4 team-card" id="team13Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 13</h5>
+          <div class="mb-3">
+            <label for="team13Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team13Name" value="Team 13">
+          </div>
+          <div class="mb-3">
+            <label for="team13Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team13Color" value="#008080">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 14 -->
+      <div class="card mb-4 team-card" id="team14Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 14</h5>
+          <div class="mb-3">
+            <label for="team14Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team14Name" value="Team 14">
+          </div>
+          <div class="mb-3">
+            <label for="team14Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team14Color" value="#808000">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 15 -->
+      <div class="card mb-4 team-card" id="team15Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 15</h5>
+          <div class="mb-3">
+            <label for="team15Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team15Name" value="Team 15">
+          </div>
+          <div class="mb-3">
+            <label for="team15Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team15Color" value="#4682B4">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team 16 -->
+      <div class="card mb-4 team-card" id="team16Card">
+        <div class="card-body">
+          <h5 class="card-title">Team 16</h5>
+          <div class="mb-3">
+            <label for="team16Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="team16Name" value="Team 16">
+          </div>
+          <div class="mb-3">
+            <label for="team16Color" class="form-label">Farbe:</label>
+            <input type="color" class="form-control" id="team16Color" value="#FA8072">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mitglieder:</label>
+            <input type="text" class="form-control" placeholder="Spieler 1">
+            <input type="text" class="form-control" placeholder="Spieler 2">
+            <input type="text" class="form-control" placeholder="Spieler 3">
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <div class="top-buttons">
+          <button type="button" class="btn btn-secondary" id="prevTeam">← Vorheriges Team</button>
+          <button type="button" class="btn btn-secondary" id="nextTeam">Nächstes Team →</button>
+        </div>
+        <div class="save-back-container">
+          <button type="submit" class="btn btn-primary">Speichern</button>
+          <a href="Hauptseite.html" class="btn btn-secondary">Zurück zur Seite</a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle (inkl. Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const teamForm = document.getElementById('teamForm');
+      const prevTeamButton = document.getElementById('prevTeam');
+      const nextTeamButton = document.getElementById('nextTeam');
+      const teamCards = document.querySelectorAll('.team-card');
+      let currentTeamIndex = 0;
+
+      // Funktion zum Anzeigen des aktuellen Teams
+      function showTeam(index) {
+        teamCards.forEach(card => card.classList.remove('active'));
+        teamCards[index].classList.add('active');
+      }
+
+      // Event Listener für "Vorheriges Team" Button
+      prevTeamButton.addEventListener('click', function () {
+        currentTeamIndex = (currentTeamIndex - 1 + teamCards.length) % teamCards.length;
+        showTeam(currentTeamIndex);
+      });
+
+      // Event Listener für "Nächstes Team" Button
+      nextTeamButton.addEventListener('click', function () {
+        currentTeamIndex = (currentTeamIndex + 1) % teamCards.length;
+        showTeam(currentTeamIndex);
+      });
+
+      // Funktion zum Anzeigen des Popups
+      function showPopup() {
+        alert('Änderungen wurden übernommen!');
+      }
+
+      teamForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Teamdaten sammeln
+        const teamData = [];
+        for (let i = 1; i <= 16; i++) {
+          const teamName = document.getElementById(`team${i}Name`).value;
+          const teamColor = document.getElementById(`team${i}Color`).value;
+          const spieler1 = document.querySelector(`#teamForm .card:nth-child(${i}) .form-control:nth-child(1)`).value;
+          const spieler2 = document.querySelector(`#teamForm .card:nth-child(${i}) .form-control:nth-child(2)`).value;
+          const spieler3 = document.querySelector(`#teamForm .card:nth-child(${i}) .form-control:nth-child(3)`).value;
+
+          teamData.push({
+            name: teamName,
+            color: teamColor,
+            mitglieder: [spieler1, spieler2, spieler3]
+          });
+        }
+
+        // Teamdaten in localStorage speichern
+        localStorage.setItem('teamData', JSON.stringify(teamData));
+
+        // Popup anzeigen
+        showPopup();
+
+        // Hier bleibe ich auf der Admin-Seite, damit der Benutzer weitere Änderungen vornehmen kann
+      });
+    });
+  </script>
+</body>
+</html>
